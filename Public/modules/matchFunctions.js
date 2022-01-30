@@ -51,13 +51,14 @@ export function GetAllMatchPossibilitiesNoParameter()
 export function GetAllMatchPossibilities(listValidPlayers,listFixedCourts)
 {
     let newMatch = [];    
-    let listPlayersRemaingAdd = [...listValidPlayers];
-
-    AddFixedCourtsToMatch(listFixedCourts,listPlayersRemaingAdd,newMatch)
+    
+    AddFixedCourtsToMatch(listFixedCourts,validPlayers,newMatch)
     validPlayers.sort(function(a, b){
         return parseInt(b.points , 10) - 
-              parseInt(a.points, 10);
+        parseInt(a.points, 10);
     });           
+
+    let listPlayersRemaingAdd = [...validPlayers];
 
     console.log(validPlayers);
     console.log(listPlayersRemaingAdd);
@@ -73,13 +74,15 @@ function AddFixedCourtsToMatch(listFixedCourts,listValidPlayers,newMatch)
     listFixedCourts.forEach(element => {
         
         console.log(element);
-        element.totalPoints = listValidPlayers.find(x => x.name === element.reves)?.points  + listValidPlayers.find(x => x.name === element.derecha)?.points;
+        element.totalPoints = validPlayers.find(x => x.name === element.reves)?.points  + validPlayers.find(x => x.name === element.derecha)?.points;
 
-        listValidPlayers = listValidPlayers.filter((value,index,arr)=>
+        validPlayers = validPlayers.filter((value,index,arr)=>
         {
-            console.log(value,index,arr);
+            // console.log(value,index,arr);
             return value.name != element.reves && value.name != element.derecha;
-        })        
+        })    
+        
+        console.log("Array after filter",listValidPlayers);
         
         element.derecha !== "" && element.reves !== "" ? element.closed = true : element.closed = false;
         
