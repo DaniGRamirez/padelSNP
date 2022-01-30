@@ -1,6 +1,6 @@
-// alert("Test");
-console.log("After alert");
-// alert("Test1");
+
+
+import * as matchFunctions from "./modules/matchFunctions.js";
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js"
@@ -93,6 +93,7 @@ function renderPlayer(player)
 }
 
 renderPlayersList();
+matchFunctions.GetAllMatchPossibilitiesNoParameter();
 
 const newPlayerTest = {
   name:"Nuevo",
